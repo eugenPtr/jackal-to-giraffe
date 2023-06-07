@@ -1,19 +1,20 @@
-#my-extension-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: green;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: move;
-  }
-  
-  #my-extension-modal {
-    position: absolute;
-    display: none;
-    width: 300px;
-    height: 200px;
-    background-color: white;
-    border: 1px solid black;
-  }
+#modal-button {
+  position: absolute;
+  display: none;
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+#modal-content {
+  position: absolute;
+  display: none;
+  padding: 20px;
+  width: 300px;
+  height: 200px;
+  align-items: center;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
