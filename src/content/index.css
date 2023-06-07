@@ -1,0 +1,19 @@
+#my-extension-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: green;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: move;
+  }
+  
+  #my-extension-modal {
+    position: absolute;
+    display: none;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid black;
+  }
