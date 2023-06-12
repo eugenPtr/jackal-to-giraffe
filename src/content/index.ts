@@ -1,7 +1,5 @@
 console.info('chrome-ext template-react-ts content script')  
 
-const OPENAI_KEY = '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';
-
 let dragging = false;
 let mouseDownPos = { x: 0, y: 0 };
 
