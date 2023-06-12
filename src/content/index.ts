@@ -1,15 +1,26 @@
 console.info('chrome-ext template-react-ts content script')  
 
+const OPENAI_KEY = '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';
+
 let dragging = false;
 let mouseDownPos = { x: 0, y: 0 };
 
 let button = document.createElement('button');
-button.id = 'modal-button';
+button.id = 'draggable-button';
 button.textContent = 'Open Modal';
 
+let modalButton = document.createElement('button');
+modalButton.id = 'modal-button';
+modalButton.textContent = 'Do Magic!';
+
+let modalContent = document.createElement('div');
+modalContent.id = 'modal-content';
+modalContent.textContent = 'This is where we call the API';
+
 let modal = document.createElement('div');
-modal.id = 'modal-content';
-modal.textContent = 'This is where we call the OpenAI api and display suggestions';
+modal.id = 'modal';
+modal.appendChild(modalContent);
+modal.appendChild(modalButton);
 
 let textarea = document.querySelector('textarea');
 
@@ -26,6 +37,18 @@ if (textarea) {
         button.style.display = 'block';
         console.log("Click client position", event.clientX, event.clientY)
         console.log("Click page position", event.pageX, event.pageY)
+    }
+
+    textarea.onchange = (event) => {
+        modalContent.textContent = textarea.value;
+    }
+
+    textarea.oninput = (event) => {
+        modalContent.textContent = textarea.value;
+    }
+
+    modalButton.onclick = () => {
+        textarea.value = 'Furrier and even more furrier hairball curl into a furry donut so stand in doorway'
     }
 }
 
@@ -66,7 +89,7 @@ document.addEventListener('mousedown', function(event) {
     // Check if the modal is displayed
     if (modal.style.display === 'block') {
         // Check if the click occurred outside the modal
-        if (!modal.contains(event.target as Node)) {
+        if (!modal.contains(event.target as Node) && (textarea && !textarea.contains(event.target as Node))) {
             // Hide the modal
             modal.style.display = 'none';
         }
