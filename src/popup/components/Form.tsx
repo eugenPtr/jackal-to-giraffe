@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 
+enum Input {
+    MESSAGE = "message",
+    RESPONSE = "response",
+    TONE = "tone",
+    TEMPERATURE = "temperature",
+}
+
 function MyForm() {
   const [message, setMessage] = useState('');
-  const [country, setCountry] = useState('Choose a country');
-  const [rangeValue, setRangeValue] = useState(50);
+  const [response, setResponse] = useState('');
+  const [tone, setTone] = useState('Choose your tone');
+  const [temperature, setTemperature] = useState(50);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = {
       message,
-      country,
-      rangeValue,
+      response,
+      tone,
+      temperature
     };
 
     // Send the formData to the API using an HTTP POST request
@@ -31,27 +40,29 @@ function MyForm() {
       });
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     const { name, value } = event.target;
 
-    if (name === 'message') {
+    if (name === Input.MESSAGE) {
       setMessage(value);
-    } else if (name === 'country') {
-      setCountry(value);
-    } else if (name === 'rangeValue') {
-      setRangeValue(value);
+    } else if (name === Input.RESPONSE) {
+      setResponse(value);
+    } else if (name === Input.TONE) {
+      setTone(value);
+    } else if (name === Input.TEMPERATURE) {
+      setTemperature(value);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className='text-left'>
       <div className="mb-[25px]">
-        <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        <label htmlFor={Input.MESSAGE} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Their message
         </label>
         <textarea
-          id="message"
-          name="message"
+          id={Input.MESSAGE}
+          name={Input.MESSAGE}
           rows="4"
           value={message}
           onChange={handleInputChange}
@@ -61,14 +72,14 @@ function MyForm() {
       </div>
 
       <div className="mb-[25px]">
-        <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        <label htmlFor={Input.RESPONSE} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           What do you want to communicate?
         </label>
         <textarea
-          id="message"
-          name="message"
+          id={Input.RESPONSE}
+          name={Input.RESPONSE}
           rows="4"
-          value={message}
+          value={response}
           onChange={handleInputChange}
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Write your thoughts here..."
@@ -76,13 +87,13 @@ function MyForm() {
       </div>
 
       <div className="mb-[25px]">
-        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        <label htmlFor={Input.TONE} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Choose your tone
         </label>
         <select
-          id="countries"
-          name="country"
-          value={country}
+          id={Input.TONE}
+          name={Input.TONE}
+          value={tone}
           onChange={handleInputChange}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
@@ -94,14 +105,14 @@ function MyForm() {
       </div>
 
       <div className="mb-[25px]"> 
-        <label htmlFor="default-range" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Temperature: {rangeValue}
+        <label htmlFor={Input.TEMPERATURE} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Temperature: {temperature}
         </label>
         <input
-          id="default-range"
-          name="rangeValue"
+          id={Input.TEMPERATURE}
+          name={Input.TEMPERATURE}
           type="range"
-          value={rangeValue}
+          value={temperature}
           onChange={handleInputChange}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer  dark:bg-gray-700"
           />

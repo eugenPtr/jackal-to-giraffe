@@ -23,11 +23,11 @@ export default defineConfig(({ mode }) => {
     plugins: [
       crx({ manifest }), 
       react(),
-      copy({
-        targets: [
-          { src: 'src/content/index.css', dest: 'build/src/content' }
-        ]
-      }),
+      // copy({
+      //   targets: [
+      //     { src: 'src/content/index.css', dest: 'build/src/content' }
+      //   ]
+      // }),
       zipPack({  
         outDir: `package`,  
         inDir: 'build',  
